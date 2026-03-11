@@ -41,3 +41,7 @@ h2 {
     display: block;
     
 }
+
+img {
+    touch-action: manipulation;
+} 

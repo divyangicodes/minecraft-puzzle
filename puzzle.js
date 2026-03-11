@@ -24,6 +24,8 @@ window.onload = function() {
             tile.addEventListener("drop", dragDrop); // drop an image onto another one
             tile.addEventListener("dragend", dragEnd); //after you completed dragdrop
 
+            tile.addEventListener("click", selectTile); //mobile
+
             document.getElementById("board").append(tile);
 
          }
@@ -58,6 +60,8 @@ window.onload = function() {
        tile.addEventListener("drop", dragDrop); // drop an image onto another one
        tile.addEventListener("dragend", dragEnd); //after you complete  d dragdrop
 
+       tile.addEventListener("click", selectTile); //mobile
+
 
         document.getElementById("pieces").append(tile);
 
@@ -91,4 +95,27 @@ function dragEnd() {
 
     turns += 1;
     document.getElementById("turns").innerText = turns;
+}
+
+//mobile and laptop
+
+function selectTile() {
+    if (!currTile) {
+        currTile = this;
+    } 
+    else if (!otherTile) {
+        otherTile = this;
+
+        let currImg = currTile.src;
+        let otherImg = otherTile.src;
+
+        currTile.src = otherImg;
+        otherTile.src = currImg;
+
+        turns += 1;
+        document.getElementById("turns").innerText = turns;
+
+        currTile = null;
+        otherTile = null;
+    }
 }
